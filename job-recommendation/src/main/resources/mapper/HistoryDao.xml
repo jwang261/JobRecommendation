@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jwang261.dao.HistoryDao">
+
+
+    <insert id="setItem">
+        INSERT IGNORE INTO `history` (user_id, item_id) VALUES (#{userId}, #{itemId});
+    </insert>
+
+    <delete id="unsetItem">
+        DELETE FROM `history` WHERE user_id = #{userId} AND item_id = #{itemId};
+    </delete>
+
+    <select id="selectItemIdByUserId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT item_id FROM `history` WHERE user_id = #{userId}
+    </select>
+</mapper>

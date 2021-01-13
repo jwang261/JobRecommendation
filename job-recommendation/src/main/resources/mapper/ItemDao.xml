@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jwang261.dao.ItemDao">
+    <resultMap type="com.jwang261.pojo.Item" id="itemMap">
+        <id column="item_id" property="itemId"/>
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+        <result column="image_url" property="imageUrl"/>
+        <result column="url" property="url"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        item_id, `name`, address, address, image_url, url
+    </sql>
+    <insert id="saveItem" parameterType="com.jwang261.pojo.Item">
+	    INSERT IGNORE INTO items VALUES (#{itemId}, #{name}, #{address}, #{imageUrl}, #{url});
+	</insert>
+
+    <select id="selectItemByItemId" parameterType="java.lang.String" resultType="com.jwang261.pojo.Item">
+        SELECT <include refid="Base_Column_List"/> FROM items WHERE item_id = #{itemId};
+    </select>
+
+
+</mapper>
